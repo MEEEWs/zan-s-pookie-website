@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🌸 For My Pookie Bear 🌸</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #ffe6f0;
+      color: #ff69b4;
+      font-family: 'Press Start 2P', cursive;
+      text-align: center;
+      padding: 20px;
+    }
+    img {
+      width: 150px;
+      image-rendering: pixelated;
+      margin-top: 20px;
+    }
+    #message {
+      margin: 30px auto;
+      max-width: 600px;
+      font-size: 14px;
+      white-space: pre-wrap;
+    }
+    button {
+      background: #ff99cc;
+      border: none;
+      padding: 10px 20px;
+      font-family: 'Press Start 2P', cursive;
+      color: #fff;
+      margin: 10px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #ff69b4;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🌸 Hey Zander Pookie Bear... I missed you! 🌸</h1>
+  <img src="YOUR_IMAGE_URL_HERE" alt="Cute Pixel Couple" />
+
+  <div id="message"></div>
+
+  <div id="choices" style="display: none;">
+    <p>🍽️ Have you eaten today?</p>
+    <button onclick="respondEaten(true)">YES</button>
+    <button onclick="respondEaten(false)">NO</button>
+  </div>
+
+  <div id="missChoices" style="display: none;">
+    <p>🥺 Do you miss me?</p>
+    <button onclick="respondMiss(true)">YES</button>
+    <button onclick="respondMiss(false)">NO</button>
+  </div>
+
+  <!-- Background music -->
+  <audio id="bg-music" src="https://cdn.pixabay.com/audio/2021/08/09/audio_7c7c245c65.mp3" autoplay loop></audio>
+
+  <script>
+    const messageEl = document.getElementById('message');
+    const choicesEl = document.getElementById('choices');
+    const missChoicesEl = document.getElementById('missChoices');
+
+    // Set background music volume
+    document.getElementById('bg-music').volume = 0.2;
+
+    function typeWriter(text, i = 0) {
+      if (i < text.length) {
+        messageEl.innerHTML += text.charAt(i);
+        setTimeout(() => typeWriter(text, i + 1), 50);
+      } else {
+        choicesEl.style.display = 'block';
+      }
+    }
+
+    function respondEaten(eaten) {
+      choicesEl.style.display = 'none';
+      if (eaten) {
+        typeWriter("\nThat's great! Glad you're taking care of yourself. 😊\n");
+      } else {
+        typeWriter("\nOh no! Promise me you'll eat something soon, okay? 🍲💖\n");
+      }
+      setTimeout(() => {
+        missChoicesEl.style.display = 'block';
+      }, 1000);
+    }
+
+    function respondMiss(miss) {
+      missChoicesEl.style.display = 'none';
+      if (miss) {
+        typeWriter("\nAww, I miss you too! Please take good care of yourself... 💕\n");
+      } else {
+        typeWriter("\nHaha, you're just saying that! I'll take it anyway 😜❤️\n");
+      }
+      setTimeout(() => {
+        typeWriter("\nI'm gonna fly soon bb, and remember I'm only a message or call away! 📱💌\n");
+        typeWriter("\nCan't wait to see you soon! 🥰\n");
+      }, 1000);
+    }
+
+    // Start typing
+    typeWriter("");
+  </script>
+
+</body>
+</html>
